@@ -10,13 +10,19 @@ public class FindTheKthNode {
 
     public static void main(String[] args) {
         TreeNode root = buildTree();
-        // 1:5 2:6 3:7 4:8 5:9 6:10 7:11
-        TreeNode outRoot = KthNode(root,8);
+        // 中序遍历结果 1:5 2:6 3:7 4:8 5:9 6:10 7:11
+        //TreeNode outRoot = KthNode(root,8);
+        // 先序遍历结果 1:8 2:6 3:5 4:7 5:10 6:9 7:11
+        //TreeNode outRoot = KthNode_pre(root,7);
+        // 后序遍历结果 1:5 2:7 3:6 4:9 5:11 6:10 7:8
+        TreeNode outRoot = KthNode_post(root,8);
         if (outRoot == null){
             System.out.println("不存在");
         }else {
             System.out.println("节点："+outRoot.val);
         }
+        // 先序遍历结果 1:5 2:7 3:6 4:9 5:11 6:10 7:8
+        //KthNode_post(root,2);
 
     }
 
@@ -57,7 +63,7 @@ public class FindTheKthNode {
      * 中序遍历找出第k个节点
      * @param pRoot 根节点
      * @param k 序号
-     * @return
+     * @return TreeNode
      */
     private static TreeNode KthNode(TreeNode pRoot, int k)
     {
@@ -82,6 +88,70 @@ public class FindTheKthNode {
             }
         }
         //k值不合法
+        return null;
+    }
+
+    /**
+     * 先序遍历寻找第k个值
+     * @param pRoot
+     * @param k
+     * @return
+     */
+    private static TreeNode KthNode_pre(TreeNode pRoot, int k){
+        //边界处理
+        if (pRoot ==  null || k <= 0){
+            return null;
+        }
+        Stack<TreeNode> stack = new Stack<>();
+        while (pRoot != null || stack.size() > 0){
+            while (pRoot != null){
+                //
+                stack.push(pRoot);
+                index ++;
+                if (index == k){
+                    return pRoot;
+                }
+                pRoot = pRoot.left;
+            }
+            if (stack.size() > 0){
+                pRoot = stack.pop();
+                pRoot = pRoot.right;
+            }
+        }
+        return null;
+    }
+
+    private static TreeNode KthNode_post(TreeNode pRoot, int k){
+        //边界处理
+        if (pRoot == null || k <= 0){
+            return null;
+            //System.out.println("空树");
+        }
+        Stack<TreeNode> stack = new Stack<>();
+        TreeNode node = pRoot;
+        while (pRoot != null){
+            //走到最左孩子的父节点
+            while (pRoot.left != null){
+                stack.push(pRoot);
+                pRoot = pRoot.left;
+            }
+            while (pRoot != null && (pRoot.right == null || pRoot.right == node)){
+                //
+                //System.out.println("======="+pRoot.val);
+                index++;
+                if (index == k){
+                    return pRoot;
+                }
+                node = pRoot;
+                if (stack.empty()){
+                    //System.out.println("我尽力了");
+                    return null;
+                }
+                pRoot = stack.pop();
+            }
+            stack.push(pRoot);
+            pRoot = pRoot.right;
+        }
         return null;
     }
 }
