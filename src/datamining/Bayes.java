@@ -37,13 +37,13 @@ public class Bayes {
                     prob = getProb_xyz(i,xIndex,j,yIndex,k,zIndex);
                     value = getProb_xyByz(i,xIndex,j,yIndex,k,zIndex);
                     valOne = getProb_aByb(i, xIndex, k, zIndex);
-                    valTwo = getProb_aByb(j, xIndex, k, zIndex);
+                    valTwo = getProb_aByb(j, yIndex, k, zIndex);
                     if (prob - 0 < 0.0000000001)continue;
                     if (value - 0 < 0.0000000001 )continue;
-                    if (valOne - 0 < 0.0000000001)continue;;
+                    if (valOne - 0 < 0.0000000001)continue;
                     if (valTwo - 0 < 0.0000000001)continue;
                     outCome += calcute(prob,value,valOne,valTwo);
-                    System.out.println("======outCome:"+outCome);
+                    //System.out.println("======outCome:"+outCome);
                 }
             }
         }
@@ -55,8 +55,8 @@ public class Bayes {
     private static double calcute(double prob, double value, double valOne, double valTwo) {
         double upValue = value/(valOne * valTwo);
         double calValue = Math.log(upValue)/Math.log(2);
-        System.out.println("upValue:" + upValue + "  calValue:" + calValue);
-        System.out.println("calcute:"+prob * calValue);
+        //System.out.println("upValue:" + upValue + "  calValue:" + calValue);
+        //System.out.println("calcute:"+prob * calValue);
         return prob * calValue ;
     }
 
@@ -67,8 +67,8 @@ public class Bayes {
                 countXYZ++;
             }
         }
-        System.out.println("countXYZ:" + countXYZ + "  data.length:" + data.length);
-        System.out.println("getProb_xyz:" + countXYZ/data.length);
+        //System.out.println("countXYZ:" + countXYZ + "  data.length:" + data.length);
+        //System.out.println("getProb_xyz:" + countXYZ/data.length);
         return countXYZ/data.length;
     }
 
@@ -83,8 +83,8 @@ public class Bayes {
                 }
             }
         }
-        System.out.println("countXY_Z:" + countXY_Z + "  countZ:" + countZ);
-        System.out.println("getProb_xyByz:" + countXY_Z/countZ);
+        //System.out.println("countXY_Z:" + countXY_Z + "  countZ:" + countZ);
+        //System.out.println("getProb_xyByz:" + countXY_Z/countZ);
         return countXY_Z/countZ;
     }
 
@@ -99,12 +99,18 @@ public class Bayes {
                 }
             }
         }
-        System.out.println("countA_B:" + countA_B + "  countB:" + countB);
-        System.out.println("getProb_aByb:"+countA_B/countB);
+        //System.out.println("countA_B:" + countA_B + "  countB:" + countB);
+        //System.out.println("getProb_aByb:"+countA_B/countB);
         return countA_B/countB;
     }
 
     public static void main(String[] args) {
+        //index: 1:年龄(3)   2:收入(3)   3:学生(2)   4:信誉(2)   5:购买计算机(2)
         bothInfo(1,3,2,3,5,2);
+        bothInfo(1,3,3,2,5,2);
+        bothInfo(1,3,4,2,5,2);
+        bothInfo(2,3,3,2,5,2);
+        bothInfo(2,3,4,2,5,2);
+        bothInfo(3,2,4,2,5,2);
     }
 }
