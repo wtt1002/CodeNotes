@@ -7,6 +7,12 @@ package algorithm.search;
  * Date: Created in 2018/7/22 22:14
  */
 public class BinarySearch {
+    /**
+     *
+     * @param array 待检索数组
+     * @param target 检索目标数
+     * @return 检索到的目标数的位置
+     */
     public int binarySearch(int[] array, int target){
         if (array == null ||array.length == 0){
             return -1;
