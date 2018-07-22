@@ -154,7 +154,7 @@ public class Bayes {
     }
 
     /**
-     * starting program
+     * start program
      *
      * @param args
      */
