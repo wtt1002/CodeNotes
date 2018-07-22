@@ -73,8 +73,15 @@ public class Partition {
         partition_last(array, start + 1, preEnd);
     }
 
-
+    /**
+     * 快排基本方法
+     * @param array 待排序数组
+     * @param start 开始下标
+     * @param end 结束下标
+     * @return 已排序位置
+     */
     public int partition_base (int[] array, int start, int end){
+        System.out.println(start + "..." + end);
         int flag = array[start];
         while (start < end){
             while (start < end && array[end] > flag){
@@ -95,15 +102,24 @@ public class Partition {
         return start;
     }
 
+    /**
+     * 随机快排入口
+     * @param array 待排序数组
+     * @param start 开始下标
+     * @param end 结束下标
+     */
     public void partition_random(int[] array, int start, int end){
+        // 边界处理
         if (start >= end)return;
+        // 随机位置
         int pos = new Random().nextInt(end - start + 1) + start;
-        System.out.println("随机数：" + pos);
-        int temp = array[0];
-        array[0] = array[pos];
+        // 随机化待排序数组
+        int temp = array[start];
+        array[start] = array[pos];
         array[pos] = temp;
+        // 获取已排号位置的下标
         int loc = partition_base(array, start, end);
-
+        // 递归调用
         partition_random(array, start, loc - 1);
         partition_random(array, loc + 1, end);
 
