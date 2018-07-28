@@ -1,5 +1,7 @@
 package offer;
 
+import java.util.Stack;
+
 /**
  * Package: offer
  * Description： codeNotes
@@ -8,6 +10,37 @@ package offer;
  */
 public class Solution {
 
+
+    /**
+     * 利用堆栈实现队列（优化方法）
+     */
+    Stack<Integer> stack1 = new Stack<>();
+    Stack<Integer> stack2 = new Stack<>();
+
+    /**
+     * 入队
+     * @param node 待入队元素
+     */
+    public void push(int node){
+        stack1.push(node);
+    }
+
+    /**
+     * 出队
+     * @return 出队元素
+     */
+    public int pop(){
+        if (stack1.empty() && stack2.empty()){
+            throw new RuntimeException();
+        }
+        if (stack2.empty() && !stack1.empty()){
+            while (!stack1.empty()){
+                stack2.push(stack1.pop());
+            }
+
+        }
+        return stack2.pop();
+    }
 
     /**
      * 根据前序遍历后中序遍历重构二叉树
