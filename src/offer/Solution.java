@@ -12,6 +12,57 @@ public class Solution {
 
 
     /**
+     * 输入一个整数，输出该数二进制表示中1的个数。其中负数用补码表示
+     * @param n 数字
+     * @return 1的个数
+     */
+    public int NumberOf1(int n) {
+        int count = 0;
+        // 要用 n ！= 0 而不是 n > 0 ,因为可能是负数
+        while (n != 0){
+            count++;
+            n = (n - 1) & n;
+        }
+        return count;
+    }
+
+    /**
+     * 非递归 斐波那契
+     * @param n 第n个数
+     * @return 第n个斐波那契数列值
+     */
+    public int Fibonacci_next(int n) {
+        if (n == 0){
+            return 0;
+        }else if (n == 1 || n == 2){
+            return 1;
+        }else {
+            int one = 1;
+            int two = 1;
+            for (int i = 3; i <= n; i++){
+                int temp = two;
+                two = one + two;
+                one = temp;
+            }
+            return two;
+        }
+    }
+    /**
+     *  斐波那契数列
+     * @param n 第n个数
+     * @return 第n个斐波那契数列值
+     */
+    public int Fibonacci(int n) {
+        if (n == 0){
+            return 0;
+        }else if (n == 1 || n == 2){
+            return 1;
+        }else {
+            return Fibonacci(n - 1) + Fibonacci(n - 2);
+        }
+    }
+
+    /**
      * 旋转数组的最小元素（未通过，暂未发现原因）
      * @param array 待查找数组
      * @return 最小值
@@ -19,7 +70,7 @@ public class Solution {
     public int minNumberInRotateArray(int[] array){
         //边界处理
         if (array == null || array.length == 0){
-            return -1;
+            return 0;
         }
         int start = 0;
         int end = array.length - 1;
@@ -45,6 +96,7 @@ public class Solution {
             for (int i = 1; i < array.length; i++){
                 if (array[i] < min){
                     min = array[i];
+                    break;
                 }
             }
             return min;
