@@ -64,6 +64,7 @@ public class Solution {
 
     /**
      * 旋转数组的最小元素（未通过，暂未发现原因）
+     * 已发现原因，将start = mid + 1;改为start = mid;以此确保在跳出while循环时前，数组时旋转的不是递增的
      * @param array 待查找数组
      * @return 最小值
      */
@@ -83,7 +84,7 @@ public class Solution {
             if (array[mid] < array[start]){
                 end = mid;
             }else if (array[mid] > array[start]){
-                start = mid + 1;
+                start = mid;
             }else {
                 isRep = true;
                 break;
