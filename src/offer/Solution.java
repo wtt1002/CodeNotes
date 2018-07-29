@@ -12,6 +12,49 @@ public class Solution {
 
 
     /**
+     * 旋转数组的最小元素（未通过，暂未发现原因）
+     * @param array 待查找数组
+     * @return 最小值
+     */
+    public int minNumberInRotateArray(int[] array){
+        //边界处理
+        if (array == null || array.length == 0){
+            return -1;
+        }
+        int start = 0;
+        int end = array.length - 1;
+        int mid = 0;
+        // 记录当前元素是否与头元素相同
+        boolean isRep = false;
+        while (start + 1 < end){
+            mid = start + (end - start)/2;
+            //System.out.println("mid:" + mid);
+            if (array[mid] < array[start]){
+                end = mid;
+            }else if (array[mid] > array[start]){
+                start = mid + 1;
+            }else {
+                isRep = true;
+                break;
+            }
+        }
+        //找到重复元素
+        if (isRep){
+            //System.out.println("is rep");
+            int min = array[0];
+            for (int i = 1; i < array.length; i++){
+                if (array[i] < min){
+                    min = array[i];
+                }
+            }
+            return min;
+        } else { // 正常结束循环，比较头尾
+            return array[start] < array[end] ? array[start] : array[end];
+        }
+    }
+
+
+    /**
      * 利用堆栈实现队列（优化方法）
      */
     Stack<Integer> stack1 = new Stack<>();
