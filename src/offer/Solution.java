@@ -10,6 +10,30 @@ import java.util.Stack;
  */
 public class Solution {
 
+    /**
+     * 给定一个double类型的浮点数base和int类型的整数exponent。求base的exponent次方。
+     * @param base 底数
+     * @param exponent 指数
+     * @return double结果
+     */
+    public double Power(double base, int exponent) {
+        if (exponent == 0) return 1.0;
+        if (exponent > 0){
+            return powerCore(base, exponent);
+        }else {
+            return 1.0/powerCore(base, -exponent);
+        }
+    }
+
+    private double powerCore(double base, int exponent) {
+        if (exponent == 0)return 1.0;
+        if (exponent == 1)return base;
+        if (exponent % 2 == 0){
+            return powerCore(base, exponent/2) * powerCore(base, exponent/2);
+        }else {
+            return powerCore(base, exponent - 1) * base;
+        }
+    }
 
     /**
      * 输入一个整数，输出该数二进制表示中1的个数。其中负数用补码表示
