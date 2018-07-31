@@ -9,6 +9,30 @@ import java.util.Stack;
  * Date: Created in 2018/7/21 15:24
  */
 public class Solution {
+
+    /**
+     * 输入一个链表，输出该链表中倒数第k个结点。（未考虑环）
+     * @param head 头结点
+     * @param k 序号
+     * @return 节点
+     */
+    public ListNode FindKthToTail(ListNode head,int k) {
+        if (head == null || k <= 0)return null;
+        ListNode pre = head;
+        ListNode tal = head;
+        for (int i = 0; i < k - 1; i++){
+            if (pre.next != null){
+                pre = pre.next;
+            }else {
+                return null;
+            }
+        }
+        while (pre.next != null){
+            pre = pre.next;
+            tal = tal.next;
+        }
+        return tal;
+    }
     /**
      * 奇数放在前，偶数放在后(要求稳定)
      * @param array 待排序数组
@@ -378,3 +402,12 @@ class TreeNode {
         val = x;
     }
     }
+
+class ListNode {
+    int val;
+    ListNode next = null;
+
+    ListNode(int val) {
+        this.val = val;
+    }
+}
