@@ -9,6 +9,36 @@ import java.util.Stack;
  * Date: Created in 2018/7/21 15:24
  */
 public class Solution {
+    /**
+     * 奇数放在前，偶数放在后(要求稳定)
+     * @param array 待排序数组
+     */
+    public void reOrderArray(int [] array) {
+        if (array == null || array.length == 0)return;
+        for (int i = 0; i < array.length; i++){
+            if (array[i] % 2 == 0){
+                int j = i;
+                for (j = i + 1; j < array.length; j++){
+                    if (array[j] % 2 == 1)break;
+                }
+                if (j < array.length){
+                    int temp = array[j];
+                    for (int k = j - 1; k >= i; k--){
+                        array[k + 1] = array[k];
+                    }
+                    array[i] = temp;
+                }
+
+            }
+
+        }
+        for (Integer i :
+                array) {
+            System.out.print(i + " ");
+        }
+
+    }
+
 
     /**
      * 给定一个double类型的浮点数base和int类型的整数exponent。求base的exponent次方。
