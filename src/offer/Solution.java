@@ -11,6 +11,42 @@ import java.util.Stack;
 public class Solution {
 
     /**
+     * 输入两个单调递增的链表，输出两个链表合成后的链表，当然我们需要合成后的链表满足单调不减规则。
+     * @param list1 链表1
+     * @param list2 链表2
+     * @return 新链表
+     */
+    public ListNode Merge(ListNode list1,ListNode list2) {
+        if (list1 == null && list2 == null){
+            return null;
+        }
+        ListNode head = new ListNode(-1);
+        ListNode p = head;
+        while (list1 != null && list2 != null){
+            if (list1.val <= list2.val){
+                p.next = list1;
+                list1 = list1.next;
+                p = p.next;
+            }else {
+                p.next = list2;
+                list2 = list2.next;
+                p = p.next;
+            }
+        }
+        while (list1 != null){
+            p.next = list1;
+            list1 = list1.next;
+            p = p.next;
+        }
+        while (list2 != null){
+            p.next = list2;
+            list2 = list2.next;
+            p = p.next;
+        }
+        return head.next;
+    }
+
+    /**
      * 输入一个链表，反转链表后，输出新链表的表头。（未考虑环）
      * @param head 原链表的头
      * @return 新链表的头
