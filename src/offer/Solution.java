@@ -11,6 +11,23 @@ import java.util.Stack;
 public class Solution {
 
     /**
+     * 输入一个链表，反转链表后，输出新链表的表头。（未考虑环）
+     * @param head 原链表的头
+     * @return 新链表的头
+     */
+    public ListNode ReverseList(ListNode head) {
+        if (head == null)return null;
+        ListNode p = null;
+        while (head != null){
+            ListNode node = new ListNode(head.val);
+            node.next = p;
+            p = node;
+            head = head.next;
+        }
+        return p;
+    }
+
+    /**
      * 输入一个链表，输出该链表中倒数第k个结点。（未考虑环）
      * @param head 头结点
      * @param k 序号
