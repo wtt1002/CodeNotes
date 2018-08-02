@@ -11,6 +11,19 @@ import java.util.Stack;
 public class Solution {
 
     /**
+     * 镜像树
+     * @param root 根节点
+     */
+    public void Mirror(TreeNode root) {
+        if (root == null)return;
+        TreeNode temp = null;
+        temp = root.left;
+        root.left = root.right;
+        root.right = temp;
+        Mirror(root.left);
+        Mirror(root.right);
+    }
+    /**
      * 输入两棵二叉树A，B，判断B是不是A的子结构。（ps：我们约定空树不是任意一个树的子结构）
      * @param root1 A树
      * @param root2 B树
