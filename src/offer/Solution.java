@@ -1,7 +1,9 @@
 package offer;
 
+import java.util.LinkedList;
+import java.util.Queue;
 import java.util.Stack;
-
+import java.util.ArrayList;
 /**
  * Package: offer
  * Description： codeNotes
@@ -10,6 +12,67 @@ import java.util.Stack;
  */
 public class Solution {
 
+    /**
+     * 从上往下打印出二叉树的每个节点，同层节点从左至右打印
+     * @param root 根节点
+     * @return ArrayList
+     */
+    public ArrayList<Integer> PrintFromTopToBottom(TreeNode root) {
+        ArrayList<Integer> arrayList = new ArrayList<>();
+        if (root == null){
+            return arrayList;
+        }
+        Queue<TreeNode> queue = new LinkedList<>();
+        queue.add(root);
+        TreeNode temp = null;
+        while (!queue.isEmpty()){
+            temp = queue.poll();
+            arrayList.add(temp.val);
+            if (temp.left != null){
+                queue.add(temp.left);
+            }
+            if (temp.right != null){
+                queue.add(temp.right);
+            }
+        }
+        return arrayList;
+    }
+    /**
+     * 栈的压入、弹出序列
+     * @param pushA 压栈数组
+     * @param popA 出站数组
+     * @return true/false
+     */
+    public boolean IsPopOrder(int [] pushA,int [] popA) {
+        Stack<Integer> stack = new Stack<>();
+        int index = 0;
+        boolean flag = true;
+        for (int i = 0; i < pushA.length;){
+            if (pushA[i] == popA[index]){
+                index++;
+                i++;
+                //System.out.println(i + "...yi..." + index);
+            }else if (!stack.empty() && stack.peek() == popA[index]){
+                index++;
+                //System.out.println(i + "...er..." + index);
+            }else {
+                stack.push(pushA[i]);
+                i++;
+                //System.out.println(i + "...san..." + index);
+            }
+        }
+        while (!stack.empty()){
+            //System.out.println("。。。");
+            if (stack.peek() == popA[index]){
+                stack.pop();
+                index++;
+            }else {
+                flag = false;
+                break;
+            }
+        }
+        return flag;
+    }
     /**
      * 镜像树
      * @param root 根节点
