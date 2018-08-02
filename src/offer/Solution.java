@@ -11,6 +11,33 @@ import java.util.Stack;
 public class Solution {
 
     /**
+     * 输入两棵二叉树A，B，判断B是不是A的子结构。（ps：我们约定空树不是任意一个树的子结构）
+     * @param root1 A树
+     * @param root2 B树
+     * @return boolean
+     */
+    public boolean HasSubtree(TreeNode root1,TreeNode root2) {
+        if (root1 == null || root2 == null){
+            return false;
+        }
+        return hasSubtreeCore(root1, root2) || hasSubtreeCore(root1.left, root2) || hasSubtreeCore(root1.right, root2);
+    }
+
+    private boolean hasSubtreeCore(TreeNode root1, TreeNode root2) {
+        if (root2 == null){
+            return true;
+        }else if (root1 == null){
+            return false;
+        }else {
+            if (root1.val == root2.val){
+                return hasSubtreeCore(root1.left, root2.left) && hasSubtreeCore(root1.right, root2.right);
+            }else {
+                return false;
+            }
+        }
+    }
+
+    /**
      * 输入两个单调递增的链表，输出两个链表合成后的链表，当然我们需要合成后的链表满足单调不减规则。
      * @param list1 链表1
      * @param list2 链表2
