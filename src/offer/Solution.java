@@ -43,10 +43,11 @@ public class Solution {
                 return false;
             }
         }
-        if (leftLength == 0){
+        // 无左子树或无右子树
+        if (leftLength == 0 || start + leftLength == end){
             return VerifySquenceOfBSTCore(sequence, start, end - 1);
         }else {
-            return VerifySquenceOfBSTCore(sequence, start, start + leftLength - 1) && VerifySquenceOfBSTCore(sequence, start + leftLength, end);
+            return VerifySquenceOfBSTCore(sequence, start, start + leftLength - 1) && VerifySquenceOfBSTCore(sequence, start + leftLength, end - 1);
         }
     }
 
