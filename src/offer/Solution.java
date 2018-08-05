@@ -13,6 +13,44 @@ import java.util.ArrayList;
 public class Solution {
 
     /**
+     * 二叉搜索树的后序遍历序列
+     * @param sequence
+     * @return
+     */
+    public  boolean VerifySquenceOfBST(int [] sequence) {
+        if (sequence.length <= 0)return false;
+        if (sequence.length == 1)return true;
+        int start = 0;
+        int end = sequence.length - 1;
+        return VerifySquenceOfBSTCore(sequence, start, end);
+    }
+
+    private boolean VerifySquenceOfBSTCore(int[] sequence, int start, int end) {
+        if (start == end){
+            return true;
+        }
+        int root = sequence[end];
+        int leftLength = 0;
+        for (int i = start; i < end; i++){
+            if (sequence[i] < root){
+                leftLength++;
+            }else {
+                break;
+            }
+        }
+        for (int j = leftLength + start; j < end; j++){
+            if (sequence[j] < end){
+                return false;
+            }
+        }
+        if (leftLength == 0){
+            return VerifySquenceOfBSTCore(sequence, start, end - 1);
+        }else {
+            return VerifySquenceOfBSTCore(sequence, start, start + leftLength - 1) && VerifySquenceOfBSTCore(sequence, start + leftLength, end);
+        }
+    }
+
+    /**
      * 从上往下打印出二叉树的每个节点，同层节点从左至右打印
      * @param root 根节点
      * @return ArrayList
