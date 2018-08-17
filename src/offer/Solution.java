@@ -12,6 +12,33 @@ import java.util.ArrayList;
  */
 public class Solution {
 
+    ArrayList<ArrayList<Integer>> paths = new ArrayList<ArrayList<Integer>>();
+    ArrayList<Integer> path = new ArrayList<>();
+
+    /**
+     * 二叉树中和为某一值的路径
+     * @param root 根节点
+     * @param target 目标和
+     * @return 所有路径
+     */
+    public ArrayList<ArrayList<Integer>> FindPath(TreeNode root,int target) {
+        if (root == null)return paths;
+        //添加当前节点
+        path.add(root.val);
+        // 找到一条路径
+        if (target - root.val == 0 && root.left == null && root.right == null){
+            // 传入path新建一个ArrayList，添加到paths
+            paths.add(new ArrayList<>(path));
+        }
+        // 左孩子
+        FindPath(root.left, target - root.val);
+        // 右孩子
+        FindPath(root.right, target - root.val);
+        // 将刚刚加入的元素剔除
+        path.remove(path.size() - 1);
+        return paths;
+
+    }
     /**
      * 二叉搜索树的后序遍历序列
      * @param sequence
