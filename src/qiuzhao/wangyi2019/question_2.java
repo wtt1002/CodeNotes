@@ -18,21 +18,29 @@ public class question_2 {
             preMark += interest[i] * wake[i];
         }
         int maxDiff = 0;
-        for (int i = 0; i < n; i++){
+        for (int i = 0; i < n - k; i++){
+            int j = i + k;
             if (wake[i] == 0){
-                int j = i + k < n ? i + k - 1 : n - 1;
-                int subMark = 0;
-                int fullMark = 0;
-                for (int t = i; t <= j; t++){
-                    if (wake[t] == 1){
-                        subMark += interest[t];
+                int temp = 0;
+                for (int t = i; t < j; t++){
+                    if (wake[t] == 0){
+                        temp += interest[t];
                     }
-                    fullMark += interest[t];
                 }
-                if (fullMark - subMark > maxDiff){
-                    maxDiff = fullMark - subMark;
+                if (temp > maxDiff){
+                    maxDiff = temp;
                 }
+
             }
+        }
+        int temp = 0;
+        for (int t = n - k; t < n; t++){
+            if (wake[t] == 0){
+                temp += interest[t];
+            }
+        }
+        if (temp > maxDiff){
+            maxDiff = temp;
         }
         System.out.println(preMark + maxDiff);
     }
