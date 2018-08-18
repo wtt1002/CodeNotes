@@ -17,6 +17,8 @@ public class question_2 {
             wake[i] = scanner.nextInt();
             preMark += interest[i] * wake[i];
         }
+
+
         int maxDiff = 0;
         for (int i = 0; i < n - k; i++){
             int j = i + k;
