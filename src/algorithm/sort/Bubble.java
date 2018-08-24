@@ -5,6 +5,8 @@ package algorithm.sort;
  * Description： 冒泡排序
  * Author: TingTing W
  * Date: Created in 2018/7/15 11:14
+ *
+ * 创建测试的快捷键：shift+ctrl+t
  */
 public class Bubble {
     public void bubbleSort(int [] array)

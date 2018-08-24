@@ -15,8 +15,15 @@ public class Main {
         char[] pattern = {'.'};
 //        boolean flag = solution.match(str, pattern);
 //        System.out.println(flag);
-        int[] pre = {1,2,3,4,5,6,7};
-        int[] in = {3,2,4,1,6,5,7};
-        solution.reConstructBinaryTree(pre,in);
+
+
+//        int[] pre = {1,2,3,4,5,6,7};
+//        int[] in = {3,2,4,1,6,5,7};
+//        solution.reConstructBinaryTree(pre,in);
+
+
+//        int[] array = {2,3,4,5,6,7,8,9,0,1};
+//        System.out.println(solution.minNumberInRotateArray(array));
+        System.out.println(solution.Fibonacci_next(39));
     }
 }
