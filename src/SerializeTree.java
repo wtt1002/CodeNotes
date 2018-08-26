@@ -92,8 +92,22 @@ public class SerializeTree {
             return null;
         }
         String [] nodes = str.split(",");
-
+        int rootVal = Integer.parseInt(nodes[0]);
+        TreeNode root = null;
+        int index = 0;
+        coreDeserialize(root,nodes,index);
 
         return null;
+    }
+    private static void coreDeserialize(TreeNode root, String [] nodes, int index){
+        if (root == null){
+            root = new TreeNode(Integer.parseInt(nodes[index]));
+        }else {
+            if (!nodes[index].equals("#")){
+                int val = Integer.parseInt(nodes[index]);
+                TreeNode node = new TreeNode(val);
+
+            }
+        }
     }
 }

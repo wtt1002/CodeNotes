@@ -41,8 +41,8 @@ public class Solution {
     }
     /**
      * 二叉搜索树的后序遍历序列
-     * @param sequence
-     * @return
+     * @param sequence 后序序列
+     * @return true/false
      */
     public  boolean VerifySquenceOfBST(int [] sequence) {
         if (sequence.length <= 0)return false;
