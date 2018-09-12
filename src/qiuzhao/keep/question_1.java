@@ -4,7 +4,7 @@ import java.util.Scanner;
 
 /**
  * Package: qiuzhao.keep
- * Description： TODO
+ * Description： 第一题
  * Author: TingTing W
  * Date: Created in 2018/9/12 16:55
  */
