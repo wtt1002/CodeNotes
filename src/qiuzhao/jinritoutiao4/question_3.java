@@ -5,7 +5,7 @@ import java.util.Scanner;
 
 /**
  * Package: qiuzhao.jinritoutiao4
- * Description： 第三题
+ * Description： 第三题（题意理解出错，过40%）
  * Author: TingTing W
  * Date: Created in 2018/9/20 0020$ 下午 6:43$
  */
