@@ -13,13 +13,13 @@ public class Main {
         //new Main();
     }
     public Main(){
-        System.out.println("B");
+        System.out.println("构造函数B");
     }
     {
-        System.out.println("C");
+        System.out.println("普通代码块C");
     }
     static {
-        System.out.println("D");
+        System.out.println("静态代码块D");
     }
 
 }
