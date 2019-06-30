@@ -13,6 +13,9 @@ public class WeatherDate implements Subject {
     private float temperture;
     private float humidity;
     private float pressure;
+    private float avgTemperature;
+    private float maxTemperature;
+    private float minTemperature;
     public WeatherDate(){
         observers = new ArrayList();
     }
@@ -34,16 +37,20 @@ public class WeatherDate implements Subject {
     public void notifyObserver() {
         for (int i = 0; i < observers.size(); i++){
             Observer observer = (Observer) observers.get(i);
-            observer.update(temperture, humidity, pressure);
+            observer.update(temperture, humidity, pressure, avgTemperature, maxTemperature, minTemperature);
         }
     }
     public void measurementsChanged(){
         notifyObserver();
     }
-    public void setMeasurements(float temperture, float humidity, float pressure){
+    public void setMeasurements(float temperture, float humidity, float pressure, float avgTemperature, float maxTemperature
+                                , float minTemperature){
         this.temperture = temperture;
         this.humidity = humidity;
         this.pressure = pressure;
+        this.avgTemperature = avgTemperature;
+        this.maxTemperature = maxTemperature;
+        this.minTemperature = minTemperature;
         measurementsChanged();
     }
 }

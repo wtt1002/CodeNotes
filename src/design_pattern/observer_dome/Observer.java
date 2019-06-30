@@ -7,5 +7,5 @@ package design_pattern.observer_dome;
  * Date: Created in 2018/7/22 11:32
  */
 public interface Observer {
-    public void update(float temp, float humidity, float pressure);
+    public void update(float temperature, float humidity, float pressure, float avgTemperature, float maxTemperature, float minTemperature);
 }
